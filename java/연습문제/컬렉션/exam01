@@ -1,0 +1,36 @@
+package ch12;
+
+import java.util.Scanner;
+import java.util.Vector;
+
+public class exam1 {
+    static Vector<Integer> v = new Vector<>();
+
+    private static void read() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("정수 입력(-1이면 종료) >> ");
+
+        while (true) {
+            int n = scanner.nextInt();
+            if (n == -1)
+                break;
+            v.add(n);
+            
+        }
+        scanner.close();
+    }
+    private static void findMin() {
+        int Min = v.get(0);
+        for (int i =0;i< v.size(); i++) {
+            if(v.get(i) < Min) {
+                Min = v.get(i);
+            }
+        }
+        System.out.println(Min);
+    }
+    public static void main(String[] args) {
+        read();
+        findMin();
+    }
+
+}
