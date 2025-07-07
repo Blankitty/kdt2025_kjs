@@ -30,7 +30,7 @@ public class MovieThread extends Thread{
 ```
 package ch12.exam01;
 
-public class MusicRunnable extends Thread{
+public class MusicRunnable implements Runnable{
     @Override
     public void run() {
         for(int i=0; i<3; i++) {
@@ -42,5 +42,4 @@ public class MusicRunnable extends Thread{
             }
         }
     }
-
 }
