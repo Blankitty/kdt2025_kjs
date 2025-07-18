@@ -1,0 +1,53 @@
+1.
+create table Dept (
+	DEPTNO INTEGER not null,
+    DNAME varchar(14),
+    LOC varchar(13),
+    primary key(DEPTNO)
+    );
+
+2.
+create table Emp (
+	EMPNO Integer not null,
+    ENAME varchar(10),
+    JOB varchar(9),
+    MGR Integer,
+    HIREDATE Date,
+    SAL Integer,
+    COMM Integer,
+    DEPTNO Integer,
+    primary key(EMPNO),
+    FOREIGN key (DEPTNO) REFERENCES Dept(DEPTNO)
+    );
+
+3.
+insert into Dept(deptno, dname, loc)
+	values (10,'ACCOUNTING','NEW YORK'),
+		  (20,'RESEARCH','DALLAS'),
+          (30,'SALES','CHICAGO'),
+          (40,'OPERATIONS','BOSTON');
+          
+4.
+insert into EMP( empno, ename, job, mgr, hiredate, sal, comm, deptno)
+	values (7369,'SMITH','CLERK',7902, '1920-12-12,800',NULL ,20),
+			(7499,'ALLEN','SALESMAN',7698, '1981-02-20', 1600, 300, 30),
+            (7521,'WARD','SALESMAN',7698, '1981-02-22', 500, 1250, 30),
+            (7566,'JONES','MANAGER',7839, '1981-04-02,800', NULL,20);
+            
+5.
+deptno에 50이 없어서 오류
+
+
+6.
+SELECT e.ename, d.loc
+FROM Emp e
+JOIN Dept d ON e.deptno = d.deptno;
+
+
+7.
+alter table Dept add managername varchar(20);
+update Dept set managername = 'A' where deptno = 10;
+update Dept set managername = 'B' where deptno = 20;
+update Dept set managername = 'C' where deptno = 30;
+update Dept set managername = 'D' where deptno = 40;
+
