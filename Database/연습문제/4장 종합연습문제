@@ -12,6 +12,13 @@ select ENAME,
 from EMP E;
 
 # 3번
+#조인
+SELECT E.ENAME
+FROM EMP E
+JOIN DEPT D ON E.DEPTNO = D.DEPTNO
+WHERE D.LOC = 'CHICAGO';
+
+#인라인
 select ENAME
 from (
 	select E.ENAME, D.LOC
@@ -19,6 +26,26 @@ from (
     join DEPT D on E.DEPTNO = D.DEPTNO
     ) as Sub
 where Sub.LOC = 'CHICAGO';
+
+#중첩질의
+SELECT ENAME
+FROM EMP
+WHERE DEPTNO IN (
+    SELECT DEPTNO
+    FROM DEPT
+    WHERE LOC = 'CHICAGO'
+);
+
+#EXITSTS
+SELECT E.ENAME
+FROM EMP E
+WHERE EXISTS (
+    SELECT 1
+    FROM DEPT D
+    WHERE D.DEPTNO = E.DEPTNO
+      AND D.LOC = 'CHICAGO'
+);
+
 
 # 4번
 select ENAME, SAL
