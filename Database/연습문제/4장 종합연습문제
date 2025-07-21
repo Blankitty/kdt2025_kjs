@@ -1,0 +1,38 @@
+# 4장 종합연습문제
+# 1번
+select ENAME
+from emp
+where MGR is null;
+
+# 2번
+select ENAME,
+	(select DNAME
+    from DEPT D
+    where D.DEPTNO = E.DEPTNO) as DNAME
+from EMP E;
+
+# 3번
+select ENAME
+from (
+	select E.ENAME, D.LOC
+    from EMP E
+    join DEPT D on E.DEPTNO = D.DEPTNO
+    ) as Sub
+where Sub.LOC = 'CHICAGO';
+
+# 4번
+select ENAME, SAL
+from EMP
+where SAL > (
+	select AVG(SAL)
+    from EMP
+);
+
+#5번
+select E.ENAME, E.DEPTNO, E.SAL
+from EMP E
+where E.SAL > (
+	select avg(E2.SAL)
+    from EMP E2
+    where E2.DEPTNO = E.DEPTNO
+);
