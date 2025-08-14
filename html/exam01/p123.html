@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <style>
+		table, th, td {
+			border:1px solid #ccc;
+		}
+		th, td {
+			width:80px;  /* 셀의 너비 */
+			padding:10px; /* 셀 테두리와 내용 사이의 간격(패딩) */
+		}
+		thead, tfoot { 
+			background : #eeeeee;  /* thead와 tfoot의 배경 색 */
+		}
+	</style>
+    <body>
+        <h1>수습 국원 지원 양식</h1>
+    <table>
+        <tr>
+            <th rowspan="3">개인정보</th>
+            <th>이름</th>
+            <th style="width: 60%;"></th>
+        </tr>
+        <tr>
+            <th rowspan="1">학과/학번</th>
+            <td rowspan="1"></td>
+
+        </tr>
+        <tr>
+            <th>연락처</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>지원분야</th>
+            <td colspan="2"></td>
+        </tr>
+    </table>
+</body>
+</html>
