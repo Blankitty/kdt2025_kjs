@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+  <div class="signup-form">
+    <h2>회원가입</h2>
+    <form action="signup" id="signupForm">
+      <label for="name">이름</label>
+      <input type="text" id="name" name="name" />
+      <div id="nameError" class="error"></div>
+
+      <label for="email">이메일</label>
+      <input type="email" id="email" name="email" />
+      <div id="emailError" class="error"></div>
+
+      <label for="phone">전화번호</label>
+      <input type="text" id="phone" name="phone" placeholder="010-1234-5678" />
+      <div id="phoneError" class="error"></div>
+
+      <label for="address">주소</label>
+      <input type="text" id="address" name="address" placeholder="기본 주소" />
+      <div id="addressError" class="error"></div>
+
+      <label for="addressDetail">상세 주소</label>
+      <input type="text" id="addressDetail" name="addressDetail" placeholder="상세 주소 (예: 101동 202호)" />
+
+      <label for="password">비밀번호</label>
+      <input type="password" id="password" name="password" />
+      <div id="passwordError" class="error"></div>
+
+      <label for="confirm_password">비밀번호 확인</label>
+      <input type="password" id="confirm_password" name="confirm_password" />
+      <div id="confirmError" class="error"></div>
+
+      <input type="submit" value="가입하기" />
+    </form>
+  </div>
+
+  <script>
+    document.querySelector('#signupForm').addEventListener('submit', (e) => {
+      let valid = true;
+
+      // 이름 검사
+      const name = document.querySelector('#name');
+      const nameError = document.querySelector('#nameError');
+      nameError.textContent = '';
+      if (name.value.trim() === '') {
+        nameError.textContent = '이름을 입력하세요.';
+        valid = false;
+      }
+
+      // 전화번호 검사
+      const phone = document.querySelector('#phone');
+      const phoneError = document.querySelector('#phoneError');
+      phoneError.textContent = '';
+      const phonePattern = /^010-\d{4}-\d{4}$/; // 010-1234-5678 형식
+      if (phone.value.trim() === '') {
+        phoneError.textContent = '전화번호를 입력하세요.';
+        valid = false;
+      } else if (!phonePattern.test(phone.value.trim())) {
+        phoneError.textContent = '전화번호 형식이 올바르지 않습니다. (예: 010-1234-5678)';
+        valid = false;
+      }
+
+      // 주소 검사
+      const address = document.querySelector('#address');
+      const addressError = document.querySelector('#addressError');
+      addressError.textContent = '';
+      if (address.value.trim() === '') {
+        addressError.textContent = '주소를 입력하세요.';
+        valid = false;
+      }
+
+      // 비밀번호 검사
+      const password = document.querySelector('#password');
+      const confirmPassword = document.querySelector('#confirm_password');
+      const passwordError = document.querySelector('#passwordError');
+      const confirmError = document.querySelector('#confirmError');
+      passwordError.textContent = '';
+      confirmError.textContent = '';
+
+      if (password.value.trim() === '') {
+        passwordError.textContent = '비밀번호를 입력하세요.';
+        valid = false;
+      }
+
+      if (confirmPassword.value.trim() === '') {
+        confirmError.textContent = '비밀번호 확인을 입력하세요.';
+        valid = false;
+      }
+
+      // 비밀번호 일치 여부 확인
+      if (password.value.trim() !== '' && confirmPassword.value.trim() !== '') {
+        if (password.value !== confirmPassword.value) {
+          confirmError.textContent = '비밀번호가 일치하지 않습니다.';
+          valid = false;
+        }
+      }
+
+      // 최종 확인
+      if (!valid) {
+        e.preventDefault(); // 전송 중지
+      }
+    });
+  </script>
+</body>
+</html>
